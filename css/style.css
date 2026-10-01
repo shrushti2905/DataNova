@@ -1,0 +1,299 @@
+/* ============================================================
+   DATANOVA HR DASHBOARD - MAIN STYLESHEET
+   ============================================================ */
+
+/* Base font */
+* {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.6; }
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.animate-fade-in    { animation: fadeIn 0.4s ease-out forwards; }
+.animate-slide-in   { animation: slideIn 0.3s ease-out forwards; }
+.animate-pulse-slow { animation: pulse 3s ease-in-out infinite; }
+.animate-spin       { animation: spin 0.8s linear infinite; }
+
+/* ============================================================
+   PAGE TRANSITIONS
+   ============================================================ */
+.page         { display: none; opacity: 0; }
+.page.active  { display: block; animation: fadeIn 0.4s ease-out forwards; }
+
+/* ============================================================
+   CARD HOVER EFFECTS
+   ============================================================ */
+.card-hover { transition: all 0.2s ease; }
+.card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================================
+   KPI CARDS — gradient top border
+   ============================================================ */
+.kpi-card {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+.kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent-color, #3b82f6);
+}
+
+/* ============================================================
+   DATA TABLE
+   ============================================================ */
+.data-table { border-collapse: separate; border-spacing: 0; }
+.data-table th {
+    background: #f8fafc;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    font-weight: 600;
+}
+.data-table tr:hover td { background: #f8fafc; }
+
+/* ============================================================
+   SIDEBAR NAVIGATION
+   ============================================================ */
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #64748b;
+    border-radius: 12px;
+    transition: all 0.2s;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+}
+.nav-link:hover  { background: #f1f5f9; color: #1e293b; }
+.nav-link.active { background: #3b82f6; color: #ffffff; }
+
+/* ============================================================
+   CHART TOOLTIP
+   ============================================================ */
+.chart-tooltip {
+    position: absolute;
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    font-size: 13px;
+    pointer-events: none;
+    z-index: 100;
+    border: 1px solid #e2e8f0;
+    min-width: 220px;
+    max-width: 260px;
+}
+.chart-tooltip.hidden { display: none; }
+
+/* ============================================================
+   PRIORITY BADGE
+   ============================================================ */
+.priority-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+/* ============================================================
+   RISK INDICATOR DOT
+   ============================================================ */
+.risk-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.risk-dot.low    { background: #10b981; }
+.risk-dot.medium { background: #f59e0b; }
+.risk-dot.high   { background: #ef4444; }
+
+/* ============================================================
+   STRATEGY BUTTONS (AI MODAL)
+   ============================================================ */
+.strategy-btn {
+    transition: all 0.2s ease;
+}
+.strategy-btn:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   MODAL BACKDROP
+   ============================================================ */
+#aiAgentModal {
+    display: none;
+}
+#aiAgentModal.open {
+    display: flex;
+}
+
+/* ============================================================
+   CUSTOM RANGE SLIDER
+   ============================================================ */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #3b82f6;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.4);
+    transition: box-shadow 0.2s;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+    box-shadow: 0 2px 12px rgba(59, 130, 246, 0.6);
+}
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #3b82f6;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.4);
+}
+
+/* ============================================================
+   NUMBER INPUT
+   ============================================================ */
+input[type="number"] {
+    outline: none;
+}
+input[type="number"]:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* ============================================================
+   RESPONSIVE SIDEBAR — collapse to icon-only below 1024px
+   ============================================================ */
+@media (max-width: 1024px) {
+    .sidebar-nav {
+        width: 72px !important;
+        padding: 16px 8px !important;
+    }
+    .sidebar-nav .nav-text,
+    .sidebar-nav .brand-text,
+    .sidebar-nav .disclaimer-box {
+        display: none !important;
+    }
+    .sidebar-nav .nav-link {
+        justify-content: center;
+        padding: 12px;
+    }
+    .main-content {
+        margin-left: 72px !important;
+    }
+}
+
+/* ============================================================
+   CUSTOM TAILWIND-COMPATIBLE UTILITY OVERRIDES
+   These ensure our custom color tokens render correctly even
+   if Tailwind's JIT hasn't generated them yet.
+   ============================================================ */
+
+/* Accent */
+.text-accent        { color: #3b82f6; }
+.bg-accent          { background-color: #3b82f6; }
+.hover\:bg-accent:hover { background-color: #3b82f6; }
+.bg-accent-dark     { background-color: #2563eb; }
+.hover\:bg-accent-dark:hover { background-color: #2563eb; }
+.border-accent      { border-color: #3b82f6; }
+.ring-accent        { --tw-ring-color: #3b82f6; }
+.shadow-accent\/20  { --tw-shadow-color: rgba(59,130,246,0.2); }
+.from-accent        { --tw-gradient-from: #3b82f6; }
+.to-accent          { --tw-gradient-to: #3b82f6; }
+.bg-accent\/10      { background-color: rgba(59,130,246,0.1); }
+.text-accent\/10    { color: rgba(59,130,246,0.1); }
+.focus\:ring-accent\/20:focus { --tw-ring-color: rgba(59,130,246,0.2); }
+.focus\:border-accent:focus   { border-color: #3b82f6; }
+
+/* Risk Low */
+.text-risk-low      { color: #10b981; }
+.bg-risk-low        { background-color: #10b981; }
+.text-risk-low-bg   { color: #d1fae5; }
+.bg-risk-low-bg     { background-color: #d1fae5; }
+
+/* Risk Medium */
+.text-risk-medium   { color: #f59e0b; }
+.bg-risk-medium     { background-color: #f59e0b; }
+.text-risk-medium-bg { color: #fef3c7; }
+.bg-risk-medium-bg  { background-color: #fef3c7; }
+
+/* Risk High */
+.text-risk-high     { color: #ef4444; }
+.bg-risk-high       { background-color: #ef4444; }
+.text-risk-high-bg  { color: #fee2e2; }
+.bg-risk-high-bg    { background-color: #fee2e2; }
+
+/* Gradient using risk-high */
+.from-risk-high     { --tw-gradient-from: #ef4444; }
+.to-red-600         { --tw-gradient-to: #dc2626; }
+
+/* ============================================================
+   SPINNER (used in AI agent button loading state)
+   ============================================================ */
+.btn-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+    flex-shrink: 0;
+}
